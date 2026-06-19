@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 信息索引与资料整理</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(145deg, #fce7d3 0%, #f8d5b0 50%, #f3c49a 100%);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      line-height: 1.6;
+      color: #2f2b28;
+    }
+    .container {
+      max-width: 920px;
+      width: 100%;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 42px;
+      box-shadow: 0 20px 40px -12px rgba(120, 70, 30, 0.25), 0 4px 12px rgba(0,0,0,0.03);
+      padding: 2.8rem 2.5rem;
+      transition: all 0.2s ease;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.8rem 1.2rem;
+        border-radius: 30px;
+      }
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 540;
+      letter-spacing: -0.02em;
+      color: #4d3422;
+      border-left: 5px solid #d69a6a;
+      padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    h1 small {
+      font-size: 1rem;
+      font-weight: 380;
+      color: #7e6250;
+      display: block;
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: #e7d2bb;
+      padding: 0.2rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: #4b382a;
+      margin-bottom: 1.6rem;
+    }
+    p {
+      margin-bottom: 1.3rem;
+      font-size: 1.05rem;
+    }
+    .highlight-box {
+      background: #f7ede3;
+      border-radius: 24px;
+      padding: 1.6rem 1.8rem;
+      margin: 1.8rem 0 2rem 0;
+      box-shadow: inset 0 1px 4px rgba(255,255,240,0.6), 0 6px 12px -8px rgba(90,60,30,0.1);
+    }
+    .highlight-box h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #573f2d;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.6rem 0 1.2rem 0;
+    }
+    @media (max-width: 550px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .feature-card {
+      background: white;
+      padding: 1.2rem 1.4rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(140, 95, 55, 0.08);
+      transition: transform 0.1s ease;
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #5a3f2b;
+      margin-bottom: 0.3rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+      color: #4a3a2e;
+    }
+    .tip-note {
+      background: #f5e7db;
+      border-radius: 30px;
+      padding: 0.8rem 1.2rem;
+      display: inline-flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.6rem;
+      font-size: 0.95rem;
+      margin: 0.5rem 0 1.8rem 0;
+    }
+    .link-button {
+      display: inline-block;
+      background: #dba477;
+      color: #2a1f17;
+      text-decoration: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 6px rgba(120, 70, 30, 0.1);
+      border: 1px solid rgba(255, 235, 210, 0.4);
+    }
+    .link-button:hover {
+      background: #c88b5a;
+      box-shadow: 0 4px 10px rgba(110, 60, 20, 0.2);
+    }
+    .inline-link {
+      color: #8b5f38;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #c6976b;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .inline-link:hover {
+      color: #5a3b22;
+      border-bottom: 1px solid #8b5f38;
+    }
+    .faq-mini {
+      margin-top: 2.2rem;
+      border-top: 1px solid #e2cfbd;
+      padding-top: 1.6rem;
+    }
+    .faq-mini details {
+      margin-bottom: 0.8rem;
+      background: #fcf6ef;
+      border-radius: 20px;
+      padding: 0.5rem 1.2rem 0.7rem 1.2rem;
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #4d3626;
+      padding: 0.2rem 0;
+    }
+    .faq-mini details p {
+      margin: 0.4rem 0 0.2rem 0;
+      font-size: 0.95rem;
+      color: #3f3229;
+    }
+    .footer-note {
+      margin-top: 2.2rem;
+      font-size: 0.85rem;
+      color: #6e5a4a;
+      text-align: center;
+      opacity: 0.7;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ddcbb8;
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero-tag">📇 资料整理 · 信息索引</div>
+    <h1>
+      雷速
+      <small>从碎片到脉络，让资料自己说话</small>
+    </h1>
+    <p>
+      日常接触的信息越来越多——书签、笔记、截图、链接……堆在一起反而成了负担。
+      最近在试着用 <strong>雷速</strong> 做索引梳理，把散落的内容按主题串起来。
+      不是那种大而全的平台，更像一个轻巧的参照系：你放进去什么，它就帮你组织什么。
+    </p>
+    <div class="highlight-box">
+      <h2>⚡ 几个我特别在意的亮点</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>📂 按主题归拢</h3>
+          <p>不用建几十个文件夹，给每条内容打一两个标签，自动聚合成线索。</p>
+        </div>
+        <div class="feature-card">
+          <h3>🔗 关联推荐</h3>
+          <p>当你记录一条新笔记时，会把之前相关的旧条目推到你眼前，省去重复查找。</p>
+        </div>
+        <div class="feature-card">
+          <h3>✏️ 轻量批注</h3>
+          <p>每条资料都可以加一两句自己的理解，时间久了回头看，比原文还有用。</p>
+        </div>
+        <div class="feature-card">
+          <h3>🌐 多端互通</h3>
+          <p>电脑上整理的东西，手机打开一样布局，通勤路上也能翻。</p>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      我自己用得最多的场景是写周报和查资料。以前总在几个文档和网页之间来回切，
+      现在把相关链接、截图和摘录都放在 <a href="https://prorayspeed.com" class="inline-link">雷速</a> 的同一个主题下，
+      整理的时候一目了然。不需要记住具体路径，搜关键词就能拉出来。
+    </p>
+
+    <div class="tip-note">
+      <span>💡 使用建议</span>
+      <span>— 先定 3～5 个核心主题，把零散资料丢进去，再慢慢拆分或合并。</span>
+    </div>
+
+    <p>
+      如果你是第一次接触这类工具，不用急着把所有东西都搬上去。
+      挑一个你最近在跟进的项目或兴趣方向，试着整理十来条资料，感受一下索引带来的清晰感。
+      等熟悉了之后，再把工作笔记、学习摘录慢慢迁移过来。
+    </p>
+
+    <hr>
+
+    <div class="faq-mini">
+      <details>
+        <summary>📌 免费吗？需要注册吗？</summary>
+        <p>有免费的基本使用额度，日常整理完全够。注册流程很简单，邮箱或者第三方账号都能登。</p>
+      </details>
+      <details>
+        <summary>🔐 我的资料会不会被公开？</summary>
+        <p>所有内容默认仅自己可见，不存在公共搜索或推荐曝光。隐私设置里也可以进一步限定设备访问。</p>
+      </details>
+      <details>
+        <summary>📎 支持哪些类型的资料？</summary>
+        <p>文本、链接、图片、文件都可以。目前主要优化了文字类内容的索引，图片里的文字也支持 OCR 识别。</p>
+      </details>
+    </div>
+
+    <p style="margin-top: 1.8rem;">
+      如果你也喜欢有条理地打理自己的信息库，不妨从一次轻松的整理开始。
+      打开 <a href="https://prorayspeed.com" class="link-button">雷速</a>，建一个你感兴趣的主题卡片试试。
+    </p>
+
+    <div class="footer-note">
+      页面仅作介绍 · 功能细节以实际产品为准
+    </div>
+  </div>
+</body>
+</html>
